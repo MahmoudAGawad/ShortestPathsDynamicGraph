@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Input {
 
-    public HashMap<Integer,ArrayList<Edge>> readInput() throws IOException {
+    public  HashMap<Integer,ArrayList<Edge>> readInput() throws IOException {
 
         HashMap<Integer,ArrayList<Edge>> graph= new HashMap<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +26,9 @@ public class Input {
                 graph.get(src).add(edge);  // not sure
             }
             else{
-                graph.put(src,new ArrayList<Edge>());
+                ArrayList<Edge> neighbours=new ArrayList<>();
+                neighbours.add(edge);
+                graph.put(src,neighbours);
             }
         }
 
@@ -35,7 +37,7 @@ public class Input {
 
 
 
-    public ArrayList<Query> readBatch() throws IOException {
+    public  ArrayList<Query> readBatch() throws IOException {
 
         ArrayList<Query> batchCommands=new ArrayList<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -59,6 +61,7 @@ public class Input {
                     q.setType(Query.TYPE_REMOVE);
                     break;
             }
+            batchCommands.add(q);
         }
 
         return batchCommands;
