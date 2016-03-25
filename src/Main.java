@@ -1,29 +1,50 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Main {
+public class Main{
 
     final static int CORES;
     static{
         CORES = Runtime.getRuntime().availableProcessors();
     }
 
-    private ArrayList<ArrayList<Edge>> graph;
+    private HashMap<Integer, ArrayList<Edge>> graph;
+
+    public Main(){
+
+
+
+        readInput();
+
+        System.out.println("R");
+
+        while(true){
+            ArrayList<Query> batch = readBatch();
+            processBatch(batch);
+        }
+    }
 
     public static void main(String[] args) {
-
+        new Main();
     }
 
 
     private void readInput(){
 
-
     }
 
-    private void readBatch(){
-
+    private ArrayList<Query> readBatch(){
+        return new ArrayList<Query>();
     }
 
-    private void processBatch(){
+    private void processBatch(ArrayList<Query> batch){
+//        ExecutorService executor = Executors.newFixedThreadPool(CORES);
+
+        
     /* tasks:
 		1. Add edge.
       2. remove edge.
