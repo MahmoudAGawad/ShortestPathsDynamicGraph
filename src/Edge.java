@@ -1,28 +1,38 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Created by Mahmoud A.Gawad on 25/03/2016.
+ * Created by Mahmoud A.Gawad & Waleed Adel on 25/03/2016.
  */
 
 public class Edge {
 
     private int src, dest;
-    private Queue<Integer> modification;
+    private LinkedList<Integer> modifications;
 
     public Edge(int src, int dest){
         this.src = src;
         this.dest = dest;
-        modification = new LinkedList<>();
-        modification.add(0);
+        this.modifications = new LinkedList<>();
     }
 
-    public void addModification(){
-
+    public void addModification(int seqno){
+        int last = modifications.isEmpty() ? seqno : modifications.pollLast();
+        if(Math.abs(seqno) != Math.abs(last)){
+            modifications.add(last);
+        }
+        if(modifications.size() == Main.CORES + 1){ // upper_bound
+            modifications.pollFirst();
+        }
+        modifications.add(seqno);
     }
 
-    public void removeModification(){
 
+    @Override
+    public boolean equals(Object o){
+        Edge e = (Edge) o;
+        return src == e.getSrc() && dest == e.getDest();
     }
 
     public int getSrc() {
@@ -31,5 +41,9 @@ public class Edge {
 
     public int getDest() {
         return dest;
+    }
+
+    public LinkedList<Integer> getModifications() {
+        return modifications;
     }
 }

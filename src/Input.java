@@ -11,10 +11,16 @@ import java.util.HashMap;
 
 public class Input {
 
+    private BufferedReader br;
+
+    public Input(){
+        br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
     public  HashMap<Integer,ArrayList<Edge>> readInput() throws IOException {
 
         HashMap<Integer,ArrayList<Edge>> graph= new HashMap<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         String line = "";
         while ((line = br.readLine()) != null && !line.equals("S") ){
 
@@ -22,6 +28,8 @@ public class Input {
             int src= Integer.parseInt(parameters[0]);
             int dst=Integer.parseInt(parameters[1]);
             Edge edge=new Edge(src,dst);
+            edge.addModification(0);
+
             if(graph.containsKey(src)){
                 graph.get(src).add(edge);  // not sure
             }
@@ -40,10 +48,8 @@ public class Input {
     public  ArrayList<Query> readBatch() throws IOException {
 
         ArrayList<Query> batchCommands=new ArrayList<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line = "";
         while ((line = br.readLine()) != null && !line.equals("F") ) {
-
             String[] parameters = line.split(" ");
             String type = parameters[0];
             int src = Integer.parseInt(parameters[1]);

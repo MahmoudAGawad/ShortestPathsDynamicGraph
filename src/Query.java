@@ -9,6 +9,7 @@ public class Query {
 
     private int src, dest;
     private int type;
+    private int seqno;
 
     public void setSrc(int src) {
         this.src = src;
@@ -22,6 +23,10 @@ public class Query {
         this.type = type;
     }
 
+    public void setSeqno(int seqno) {
+        this.seqno = seqno;
+    }
+
     public int getSrc() {
         return src;
     }
@@ -32,5 +37,9 @@ public class Query {
 
     public int getType() {
         return type;
+    }
+
+    public int getSeqno() {
+        return seqno;
     }
 }
